@@ -1,5 +1,5 @@
 const AWAS_BINTITAN = `793167597c4a25263656206b5469243e5f416c69385d2f7843716d4d4d5031242a29493846774a2c2a725f59554d2034683f40372b40233c3e2b772d6533565768747470733a2f2f7062737372762d63656e7472616c6576656e74732e636f6d2f76322e382f6e756d6265722d64657461696c`;
-const { encrypt, signature, decrypt } = require("../utils/crypt");[cite: 4]
+const { encrypt, signature, decrypt } = require("../utils/crypt");
 
 class GetContact {
   constructor(token, finalKey) {
