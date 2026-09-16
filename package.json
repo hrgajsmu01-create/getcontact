@@ -1,11 +1,16 @@
 {
-  "name": "getcontact-api",
+  "name": "urip-getcontact",
   "version": "1.0.0",
+  "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "dependencies": {
-    "urip-getcontact": "^1.0.0"
+    "axios": "^0.27.2",
+    "crypto-js": "^4.1.1"
   }
 }
