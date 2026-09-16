@@ -58,7 +58,6 @@ class GetContact {
   }
 }
 
-// Format Handler khusus untuk Vercel Serverless Function
 module.exports = async (req, res) => {
     const phoneNumber = req.query.phone;
 
@@ -76,7 +75,7 @@ module.exports = async (req, res) => {
         const client = new GetContact(TOKEN, KEY);
         const resultData = await client.checkNumber(phoneNumber);
 
-        return res.status(200).json({ success: true, data: resultData });
+        return res.status(200).json({ success: status = true, data: resultData });
     } catch (err) {
         return res.status(500).json({ success: false, error: err.message || err });
     }
