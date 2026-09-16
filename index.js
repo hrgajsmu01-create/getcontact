@@ -1,3 +1,6 @@
+const http = require('http');
+
+// ----- KODE ASLI CLASS GETCONTACT -----
 const AWAS_BINTITAN = `793167597c4a25263656206b5469243e5f416c69385d2f7843716d4d4d5031242a29493846774a2c2a725f59554d2034683f40372b40233c3e2b772d6533565768747470733a2f2f7062737372762d63656e7472616c6576656e74732e636f6d2f76322e382f6e756d6265722d64657461696c`;
 const { encrypt, signature, decrypt } = require("./utils/crypt");
 
@@ -58,4 +61,38 @@ class GetContact {
   }
 }
 
-module.exports = GetContact;
+// ----- PEMBUNGKUS SERVER HTTP UNTUK VERCEL -----
+const server = http.createServer(async (req, res) => {
+    res.setHeader('Content-Type', 'application/json');
+
+    // Mengambil parameter nomor dari URL (contoh: /?phone=081218111154)
+    const urlParams = new URL(req.url, `http://${req.headers.host}`);
+    const phoneNumber = urlParams.searchParams.get('phone');
+
+    if (!phoneNumber) {
+        res.statusCode = 400;
+        res.end(JSON.stringify({ 
+            success: false, 
+            message: "Parameter 'phone' tidak ditemukan. Gunakan format: ?phone=0812xxxxxxx" 
+        }, null, 2));
+        return;
+    }
+
+    try {
+        // Masukkan TOKEN dan KEY Getcontact Anda di sini
+        const TOKEN = "bezQlo44aa7aa10a94d7477ff23827e230497ed83e74317005a0cf0a81";
+        const KEY = "ee1869a18df98108e4adf7f65613c1df672764cb9b950dd5acef2f366a07045a";
+
+        const client = new GetContact(TOKEN, KEY);
+        const resultData = await client.checkNumber(phoneNumber);
+
+        res.statusCode = 200;
+        res.end(JSON.stringify({ success: true, data: resultData }, null, 2));
+    } catch (err) {
+        res.statusCode = 500;
+        res.end(JSON.stringify({ success: false, error: err.message || err }, null, 2));
+    }
+});
+
+const PORT = process.env.PORT || 3000;
+server.listen(PORT);
