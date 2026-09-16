@@ -1,0 +1,11 @@
+{
+  "name": "getcontact-api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "urip-getcontact": "^1.0.0"
+  }
+}
