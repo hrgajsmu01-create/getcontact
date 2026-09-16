@@ -1,5 +1,7 @@
 const AWAS_BINTITAN = `793167597c4a25263656206b5469243e5f416c69385d2f7843716d4d4d5031242a29493846774a2c2a725f59554d2034683f40372b40233c3e2b772d6533565768747470733a2f2f7062737372762d63656e7472616c6576656e74732e636f6d2f76322e382f6e756d6265722d64657461696c`;
-const { encrypt, signature, decrypt } = require("../utils/crypt");
+
+// PERBAIKAN PATH: Mengarah keluar folder api (../) menuju folder utils
+const { encrypt, signature, decrypt } = require("../utils/crypt");[cite: 4]
 
 class GetContact {
   constructor(token, finalKey) {
@@ -11,7 +13,10 @@ class GetContact {
     try {
       if (!this._token) throw new Error("Token is required!");
       if (!this._finalKey) throw new Error("Final key is required!");
+      
+      // PERBAIKAN PATH
       number = await require("../utils/validate")(number);[cite: 6]
+      
       const p = {
         countryCode: "us",
         phoneNumber: number,
@@ -26,6 +31,7 @@ class GetContact {
         AWAS_BINTITAN.replace(AWAS_BINTITAN.substring(128), "")
       );
 
+      // PERBAIKAN PATH
       const res = await require("../utils/request")([cite: 5]
         AWAS_BINTITAN.substring(128),
         encrypt(JSON.stringify(p), this._finalKey),[cite: 4]
