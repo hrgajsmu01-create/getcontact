@@ -113,8 +113,8 @@ module.exports = async (req, res) => {
     }
 
     try {
-        const TOKEN = "bezQlo44aa7aa10a94d7477ff23827e230497ed83e74317005a0cf0a81";
-        const KEY = "ee1869a18df98108e4adf7f65613c1df672764cb9b950dd5acef2f366a07045a";
+        const TOKEN = "bhbClE744ce55644d8073602ab605918699d7eaf65a2dd9825bfee14b2";
+        const KEY = "864d6f2e1873ba12984cf759088c2b0b913a0a7ce81e15f9d2b0be6115d6c1fd";
 
         const client = new GetContact(TOKEN, KEY);
         const resultData = await client.checkNumber(phoneNumber);
